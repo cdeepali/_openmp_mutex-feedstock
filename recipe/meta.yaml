@@ -27,10 +27,17 @@ build:
     - {{ pin_subpackage('_openmp_mutex', max_pin=None) }}
 
 requirements:
+  build:
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   host:
-    - llvm-openmp >=9.0.1
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
+    - llvm-openmp  {{ llvm_openmp }}
   run:
-    - llvm-openmp >=9.0.1
+    - llvm-openmp {{ llvm_openmp }}
     - _libgcc_mutex {{ _libgcc_mutex }}  # [linux64 or ppc64le]
 
 test:
@@ -50,10 +57,11 @@ test:
 about:
   summary: OpenMP Implementation Mutex
   license: BSD-3-Clause
+  license_family: BSD
   license_file: LICENSE
   home: https://github.com/conda-forge/openmp-feedstock
+  description: OpenMP Implementation Mutex
 
 extra:
   recipe-maintainers:
-    - isuruf
-    - beckermr
+    - open-ce/open-ce-dev-team
