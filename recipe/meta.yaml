@@ -44,6 +44,10 @@ test:
   requires:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
+
   commands:
     - test -f $PREFIX/lib/libgomp.so.1
     - if [ ! "$PREFIX/lib/libgomp.so.1" -ef "$PREFIX/lib/libomp.so" ]; then exit 1; fi
